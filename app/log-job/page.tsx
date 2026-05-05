@@ -86,52 +86,59 @@ export default function LogJobForm() {
     <div style={{ fontFamily: 'Segoe UI, Roboto, sans-serif', padding: 24 }}>
       <h1>Log a Job</h1>
       <form onSubmit={handleSubmit} style={{ maxWidth: 640 }}>
-        <label style={{ display: 'block', marginTop: 12 }}>
+        <label htmlFor="service-type" style={{ display: 'block', marginTop: 12 }}>
           Service type*
-          <select
-            value={serviceType}
-            onChange={(e) => setServiceType(e.target.value)}
-            style={{ display: 'block', width: '100%', padding: 8, marginTop: 6 }}
-          >
-            {SERVICE_OPTIONS.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
         </label>
+        <select
+          id="service-type"
+          aria-required="true"
+          value={serviceType}
+          onChange={(e) => setServiceType(e.target.value)}
+          style={{ display: 'block', width: '100%', padding: 8, marginTop: 6 }}
+        >
+          {SERVICE_OPTIONS.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
 
-        <label style={{ display: 'block', marginTop: 12 }}>
+        <label htmlFor="invoiced-amount" style={{ display: 'block', marginTop: 12 }}>
           Invoiced amount*
-          <input
-            type="number"
-            step="0.01"
-            value={invoicedAmount}
-            onChange={(e) => setInvoicedAmount(e.target.value)}
-            style={{ display: 'block', width: '100%', padding: 8, marginTop: 6 }}
-          />
         </label>
+        <input
+          id="invoiced-amount"
+          aria-required="true"
+          type="number"
+          step="0.01"
+          value={invoicedAmount}
+          onChange={(e) => setInvoicedAmount(e.target.value)}
+          style={{ display: 'block', width: '100%', padding: 8, marginTop: 6 }}
+        />
 
-        <label style={{ display: 'block', marginTop: 12 }}>
+        <label htmlFor="date-completed" style={{ display: 'block', marginTop: 12 }}>
           Date completed*
-          <input
-            type="date"
-            value={dateCompleted}
-            max={new Date().toISOString().split('T')[0]}
-            onChange={(e) => setDateCompleted(e.target.value)}
-            style={{ display: 'block', padding: 8, marginTop: 6 }}
-          />
         </label>
+        <input
+          id="date-completed"
+          aria-required="true"
+          type="date"
+          value={dateCompleted}
+          max={new Date().toISOString().split('T')[0]}
+          onChange={(e) => setDateCompleted(e.target.value)}
+          style={{ display: 'block', padding: 8, marginTop: 6 }}
+        />
 
-        <label style={{ display: 'block', marginTop: 12 }}>
+        <label htmlFor="customer-note" style={{ display: 'block', marginTop: 12 }}>
           Customer note
-          <textarea
-            value={customerNote}
-            onChange={(e) => setCustomerNote(e.target.value)}
-            rows={4}
-            style={{ display: 'block', width: '100%', padding: 8, marginTop: 6 }}
-          />
         </label>
+        <textarea
+          id="customer-note"
+          value={customerNote}
+          onChange={(e) => setCustomerNote(e.target.value)}
+          rows={4}
+          style={{ display: 'block', width: '100%', padding: 8, marginTop: 6 }}
+        />
 
         <div style={{ marginTop: 16, display: 'flex', gap: 12, alignItems: 'center' }}>
           <button type="submit" disabled={loading} style={{ padding: '8px 14px' }}>
@@ -144,23 +151,34 @@ export default function LogJobForm() {
       </form>
 
       {status && (
-        <div style={{ marginTop: 12, color: status.startsWith('Error') ? 'crimson' : 'green' }}>{status}</div>
+        <div
+          role="status"
+          aria-live="polite"
+          style={{ marginTop: 12, color: status.startsWith('Error') ? 'crimson' : 'green' }}
+        >
+          {status}
+        </div>
       )}
 
       <section style={{ marginTop: 24 }}>
         <h2>Recent jobs (most recent first)</h2>
         {jobs.length === 0 ? (
-          <div>No jobs yet.</div>
+          <div className="muted">No jobs yet.</div>
         ) : (
           <div>
-            <ul>
+            <div className="job-list" role="list" aria-label="Recent jobs">
               {jobs.map((j) => (
-                <li key={j.id} style={{ marginBottom: 8 }}>
-                  <strong>{j.service_type}</strong> — ${Number(j.invoiced_amount).toFixed(2)} — {j.date_completed}
+                <div key={j.id} className="job-item" role="listitem">
+                  <div>
+                    <strong>{j.service_type}</strong>
+                  </div>
+                  <div className="muted">
+                    ${Number(j.invoiced_amount).toFixed(2)} — {j.date_completed}
+                  </div>
                   {j.customer_note ? <div style={{ fontSize: 13 }}>{j.customer_note}</div> : null}
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
             <div style={{ marginTop: 12 }}>
               <strong>Running total (visible): </strong>
               ${jobs.reduce((s, r) => s + Number(r.invoiced_amount || 0), 0).toFixed(2)}

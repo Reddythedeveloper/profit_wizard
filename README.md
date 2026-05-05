@@ -126,4 +126,47 @@ How to test Phase 2 locally
 Next (Phase 3)
 - Polish UI styling, ensure commit history is tidy, add final README notes (Claude Code prompts, deploy to Vercel), and create the Vercel deployment.
 
+Phase 3 — polish, prepare commits, and deploy to Vercel
+
+What Phase 3 does
+- Small UI polish applied (improved spacing, button styles, job item cards).
+- Update README with deployment steps and checklist so reviewer can run and verify the app easily.
+
+Deployment checklist (Vercel)
+1. Create a public GitHub repository for this project and push this code (do NOT commit `.env.local`).
+2. Create a Vercel project and connect the GitHub repo. Use the `Next.js` framework preset.
+3. In Vercel project settings -> Environment Variables add the following (match local `.env.local` keys):
+
+```
+NEXT_PUBLIC_SUPABASE_URL = <your supabase project url>
+NEXT_PUBLIC_SUPABASE_ANON_KEY = <your anon key>
+```
+
+4. Deploy. After build, confirm the live URL and add it to the README.
+
+Optional: Deploy with Vercel CLI
+- Install: `npm i -g vercel`
+- Login: `vercel login`
+- From project root: `vercel` and follow prompts. Set `--prod` to promote to production.
+
+What I can do next (choose):
+- Create a Git repo and make a series of focused commits for you locally (I can run `git` commands here). You will need to create a GitHub repo and add it as `origin` or I can create a repo if you provide permissions.
+- Attempt a Vercel CLI deployment from this environment (requires `vercel` login and permission).
+- I can prepare a short set of 2–3 Claude Code prompts to include in the README (as required by the assignment).
+
+Phase 3 a11y & consistency checklist
+- All form controls have accessible labels and `id`/`htmlFor` associations.
+- Visible focus styles exist for keyboard users.
+- Dynamic feedback regions (`aria-live`) announce status and counts.
+- Semantic structure (`main`, `header`, lists with roles) is in place.
+- Color contrast checked for text and interactive controls (aim for WCAG AA).
+
+Functional pre-deploy checklist
+- Supabase env vars set in Vercel and `.env.local` not committed.
+- E2E flow: submit job → job appears in feed → counts update.
+- Basic error handling shows readable messages for network/API failures.
+- Commit history contains small, focused commits telling the story of development.
+
+
+
 See the detailed plan: `Phase wise detailed plan.md`

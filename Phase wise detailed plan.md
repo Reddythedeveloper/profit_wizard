@@ -46,6 +46,25 @@ These refinements are included in the Phase 2 implementation and should be testa
 - Deliverables: styled UI, README, deployed site URL, public GitHub repo.
 - Risks: Vercel env var misconfiguration; ensure anon key and URL are added to project settings.
 
+Accessibility, consistency, and functional-gap checks (Phase 3 refinement)
+- Tasks (a11y & consistency):
+  - Ensure all form controls have associated labels and `id`/`htmlFor` pairs.
+  - Provide visible focus indicators for interactive elements (`:focus` styles).
+  - Use semantic elements (`main`, `header`, `role=list` / `role=listitem`) where appropriate.
+  - Add `aria-live` regions for form status messages and for dynamic counts.
+  - Ensure color contrast meets WCAG AA (background/text and button contrast).
+  - Keep spacing, typography, and component styles consistent across pages (buttons, inputs, cards).
+
+- Tasks (functionality / release readiness):
+  - Verify Supabase table and environment variables are correctly configured in Vercel.
+  - Confirm end-to-end flows: form insert → feed shows inserted record → counts update.
+  - Check error handling for network failures and display meaningful messages.
+  - Review commit history to ensure meaningful, focused commits for reviewer.
+  - Document 2–3 Claude Code prompts used during development in README.
+
+- Deliverables: accessible UI refinements, a short functional-gap checklist, and a deployment-ready README.
+
+
 ## Phase 4 — Final Checks & Shipping (15–30 minutes)
 - Tasks:
   - Review commit history; squash only if needed but keep commits meaningful.

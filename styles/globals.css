@@ -1,5 +1,19 @@
 html,body,#__next{height:100%;}
-body{margin:0;font-family:Segoe UI, Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;padding:0}
+body{margin:0;font-family:Segoe UI, Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;padding:0;background:#f7fafc;color:#0f172a}
 .app-root{max-width:900px;margin:0 auto;padding:24px}
 
-a{color:blue}
+a{color:#2563eb}
+
+button{background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer}
+button[disabled]{opacity:0.6;cursor:not-allowed}
+
+form input, form select, form textarea{border:1px solid #e2e8f0;border-radius:6px}
+
+.job-item{background:white;padding:12px;border-radius:8px;border:1px solid #e6edf3}
+.job-list{display:flex;flex-direction:column;gap:8px}
+
+.muted{color:#64748b}
+
+button:focus{outline:3px solid #93c5fd;outline-offset:2px}
+input:focus, select:focus, textarea:focus{outline:3px solid #bfdbfe;outline-offset:2px}
+
