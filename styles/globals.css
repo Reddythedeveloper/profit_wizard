@@ -1,19 +1,105 @@
-html,body,#__next{height:100%;}
-body{margin:0;font-family:Segoe UI, Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;padding:0;background:#f7fafc;color:#0f172a}
-.app-root{max-width:900px;margin:0 auto;padding:24px}
+html, body, #__next {
+  height: 100%;
+}
 
-a{color:#2563eb}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto;
+  background: #f8fafc;
+  color: #0f172a;
+}
 
-button{background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer}
-button[disabled]{opacity:0.6;cursor:not-allowed}
+/* layout */
+.app-root {
+  max-width: 1000px;
+  margin: auto;
+  padding: 24px;
+}
 
-form input, form select, form textarea{border:1px solid #e2e8f0;border-radius:6px}
+/* GRID */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
 
-.job-item{background:white;padding:12px;border-radius:8px;border:1px solid #e6edf3}
-.job-list{display:flex;flex-direction:column;gap:8px}
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
-.muted{color:#64748b}
+/* cards */
+.form-card,
+.jobs-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e6edf3;
+}
 
-button:focus{outline:3px solid #93c5fd;outline-offset:2px}
-input:focus, select:focus, textarea:focus{outline:3px solid #bfdbfe;outline-offset:2px}
+/* form */
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
 
+/* button */
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+/* jobs */
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.job-item {
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e6edf3;
+}
+
+.muted {
+  color: #64748b;
+}
+
+/* total */
+.total-box {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #99b8d7;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+/* status */
+.status.success {
+  color: green;
+  margin-top: 10px;
+}
+
+.status.error {
+  color: crimson;
+  margin-top: 10px;
+}

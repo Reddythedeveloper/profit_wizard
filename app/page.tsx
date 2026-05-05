@@ -9,14 +9,20 @@ export default function Home() {
   useEffect(() => {
     let mounted = true
     ;(async () => {
-      const { data, error, count } = await supabase.from('jobs').select('*', { count: 'exact' }).limit(1)
-      if (!mounted) return
-      if (error) {
-        console.error('Error fetching job count', error)
+      try {
+        const s = supabase.get()
+        const { data, error, count } = await s.from('jobs').select('*', { count: 'exact' }).limit(1)
+        if (!mounted) return
+        if (error) {
+          console.error('Error fetching job count', error)
+          setCount(null)
+          return
+        }
+        setCount(count ?? (data ? data.length : 0))
+      } catch (err) {
+        console.warn('Skipping job count fetch (no supabase):', err instanceof Error ? err.message : err)
         setCount(null)
-        return
       }
-      setCount(count ?? (data ? data.length : 0))
     })()
     return () => {
       mounted = false

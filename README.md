@@ -1,6 +1,6 @@
 # profit_wizard
 
-Phase 0 complete — scaffold and local dev server
+## Phase 0 complete — scaffold and local dev server
 
 This repository contains a minimal Next.js (App Router) + TypeScript scaffold prepared for the Profit Wizard take-home.
 
@@ -72,7 +72,7 @@ Notes on verification
 Next (Phase 2)
 - Implement the jobs feed (fetch and display the 10 most recent jobs, newest first) and optionally a running total of visible invoiced amounts.
 
-Phase 1 complete — form implementation and submission testing
+## Phase 1 complete — form implementation and submission testing
 
 What I implemented in Phase 1
 - A client-side job logging form at `/log-job` with fields: Service type, Invoiced amount, Date completed, Customer note.
@@ -105,7 +105,7 @@ SELECT * FROM jobs ORDER BY created_at DESC LIMIT 10;
 Notes on verification
 - I performed an automated insert test (using the anon key from `.env.local`) which returned a successful insert response — this confirms the client/server keys and table are reachable. If you see permission or 404 errors, ensure the `jobs` table exists and the `NEXT_PUBLIC_` env vars are correct.
 
-Phase 2 complete — jobs feed, running total, and refinements
+## Phase 2 complete — jobs feed, running total, and refinements
 
 What I implemented in Phase 2
 - A feed below the form that fetches and displays the 10 most recent jobs (newest first).
@@ -126,7 +126,7 @@ How to test Phase 2 locally
 Next (Phase 3)
 - Polish UI styling, ensure commit history is tidy, add final README notes (Claude Code prompts, deploy to Vercel), and create the Vercel deployment.
 
-Phase 3 — polish, prepare commits, and deploy to Vercel
+## Phase 3 — polish, prepare commits, and deploy to Vercel
 
 What Phase 3 does
 - Small UI polish applied (improved spacing, button styles, job item cards).
@@ -168,5 +168,33 @@ Functional pre-deploy checklist
 - Commit history contains small, focused commits telling the story of development.
 
 
+## Phase 4 — Finalize, cleanup, and ship
 
-See the detailed plan: `Phase wise detailed plan.md`
+What I did in Phase 4
+- Cleaned up project structure: moved type declaration files to `types/`, moved helper scripts to `scripts/`, and removed stray/deprecated files.
+- Added `public/` assets (`favicon.svg`, `robots.txt`) and referenced the favicon in `app/layout.tsx` metadata.
+- Added `vercel.json` to ensure the Next builder is used reliably on Vercel.
+- Fixed TypeScript/Next build issues (CSS module declarations, NodeNext module settings, missing `@types/react-dom`) and made the Supabase client lazy so the app builds during static prerender without server env vars.
+- Rebuilt locally and redeployed to Vercel; verified production pages respond.
+
+Production site
+- URL: https://profitwizard.vercel.app (deployed from the `profit_wizard` subfolder)
+
+Final QA checklist
+- Visit the home page and `/log-job` to confirm both return `200 OK` and render correctly.
+- Submit a job via the UI and confirm the row appears in the `jobs` table in your Supabase project.
+- Confirm environment variables are set in Vercel (Project Settings → Environment Variables): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+- Confirm `.env.local` is not committed (it is listed in `.gitignore`).
+
+Repository cleanup notes
+- `types/` contains TypeScript ambient declarations used during build.
+- `scripts/` contains utility scripts such as `proof_insert_test.ps1` for manual verification.
+- `vercel.json` is present to ensure the correct build behavior on Vercel.
+
+Next recommended steps (pick one)
+- Commit and push the final changes to your GitHub repo and enable preview deployments on Vercel.
+- Run an end-to-end test now (I can submit a job through the live UI and confirm the Supabase insert).
+- If you want another round of polish (styling, tests, or small UX improvements), tell me which area to prioritize.
+
+If you want, I can commit these changes and push to your repo now, then run a final E2E submit and confirm the insert. Tell me how you'd like to proceed.
+	- The `Home` button navigates back to `/`.
