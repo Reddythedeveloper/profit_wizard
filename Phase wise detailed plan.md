@@ -30,6 +30,13 @@ This plan breaks the work into phases for a 2–5 hour implementation targeting 
 - Deliverables: feed of 10 most recent jobs, running total if completed.
 - Risks: Time zone / date formatting differences; prefer ISO/local formatting.
 
+Additional Phase 2 refinements (requested):
+- Enforce that the `date_completed` picker cannot select a future date (max = today) to meet validation rules.
+- Add a `Home` button on the `/log-job` page to navigate back to the home page.
+- Refine the Home page to show useful information: title, short description, and a usage count (number of jobs recorded). If feasible, fetch the count from Supabase in the home page.
+
+These refinements are included in the Phase 2 implementation and should be testable before moving to Phase 3.
+
 ## Phase 3 — Polishing & Deployment (30–60 minutes)
 - Tasks:
   - Add small styles (Tailwind or simple CSS) for readability.
