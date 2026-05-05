@@ -180,21 +180,18 @@ What I did in Phase 4
 Production site
 - URL: https://profitwizard.vercel.app (deployed from the `profit_wizard` subfolder)
 
-Final QA checklist
-- Visit the home page and `/log-job` to confirm both return `200 OK` and render correctly.
-- Submit a job via the UI and confirm the row appears in the `jobs` table in your Supabase project.
-- Confirm environment variables are set in Vercel (Project Settings → Environment Variables): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-- Confirm `.env.local` is not committed (it is listed in `.gitignore`).
+## Challenges and Learnings During the Workflow
 
-Repository cleanup notes
-- `types/` contains TypeScript ambient declarations used during build.
-- `scripts/` contains utility scripts such as `proof_insert_test.ps1` for manual verification.
-- `vercel.json` is present to ensure the correct build behavior on Vercel.
+- Built a **Profit Wizard** tool for logging different types of home maintenance jobs.  
+- The main challenge was deploying the project on **Vercel**, which was new to me. I resolved issues related to authentication and deployment protection through debugging and documentation.  
+- I would ask my collegue to take part on fixing the bugs and improvements while i work on architecture and system.  
+- If given more time, I would focus on improving functionality and ensuring overall consistency across the product.  
+- Learned that **accessibility, functionality, and reliability** are more important than UI/design in many cases.  
+- Improved layout by using a **grid system**, placing the form on the left and job summary on the right for better usability.  
 
-Next recommended steps (pick one)
-- Commit and push the final changes to your GitHub repo and enable preview deployments on Vercel.
-- Run an end-to-end test now (I can submit a job through the live UI and confirm the Supabase insert).
-- If you want another round of polish (styling, tests, or small UX improvements), tell me which area to prioritize.
 
-If you want, I can commit these changes and push to your repo now, then run a final E2E submit and confirm the insert. Tell me how you'd like to proceed.
-	- The `Home` button navigates back to `/`.
+## Majorly used Prompts
+
+Refine the Home Page by replacing default text with meaningful information about the tool, such as title, description, and usage insights (e.g., job count, revenue summary). Add a Home button in the Log Job page for easy navigation. Ensure these updates are included in Phase 2 implementation and documented in the plan file.
+
+Before deployment, ensure the application is production-ready by focusing on functionality rather than UI alone. Apply accessibility (a11y) best practices, maintain UI consistency, and validate all core features. Identify and fix any functional gaps to ensure a complete and reliable end-to-end user experience. Update these improvements in the Phase 3 plan documentation.
