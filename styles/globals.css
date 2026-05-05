@@ -1,0 +1,5 @@
+html,body,#__next{height:100%;}
+body{margin:0;font-family:Segoe UI, Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;padding:0}
+.app-root{max-width:900px;margin:0 auto;padding:24px}
+
+a{color:blue}
